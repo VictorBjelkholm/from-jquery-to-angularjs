@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html >
+
+  <head>
+    <script src="js/angular.js"></script>
+  </head>
+
+  <body ng-app="plnkr" style="background-color: #e5ebf5">
+    <div ng-controller="IndexCtrl">
+      <input type="text" ng-model="newTodo.name"/>
+      <button type="submit" ng-click="addTodo(newTodo)">Add</button>
+      <ul style="list-style: none;">
+        <li ng-repeat="item in items">
+          <span ng-bind="item.name" ng-click="editTodo(item)"></span>
+          <a ng-href="#" ng-click="removeTodo(item, $event)">Remove</a>
+        </li>
+      </ul>
+      <div ng-show="editingTodo">
+        <input type="text" ng-model="editingTodo.name"/>
+        <button ng-click="editingTodo = null">Done</button>
+      </div>
+    </div>
+    <script>
+      var app = angular.module('plnkr', []);
+
+      app.controller('IndexCtrl', function ($scope) {
+        $scope.items = [
+            {name: 'Item 1'},
+            {name: 'Item 2'},
+          ];
+        $scope.newTodo = {name: "New todo item"};
+
+        $scope.addTodo = function (newTodo) {
+          $scope.items.push(angular.copy(newTodo));
+        }
+
+        $scope.removeTodo = function (item, $event) {
+          $event.preventDefault();
+          var index = $scope.items.indexOf(item);
+          $scope.items.splice(index, 1);
+        }
+
+        $scope.editTodo = function (item) {
+          $scope.editingTodo = item;
+        }
+      })
+    </script>
+  </body>
+
+</html>

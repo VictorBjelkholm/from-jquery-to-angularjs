@@ -1,21 +1,16 @@
 {
-  "name": "reveal.js",
-  "version": "2.6.0-dev",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
-  "subdomain": "revealjs",
-  "scripts": {
-    "test": "grunt test",
-    "start": ""
-  },
+  "name": "From jQuery to Angularjs",
+  "version": "1.0.0",
+  "description": "Slides for talk about moving from jQuery to AngularJS",
+  "homepage": "http://victor.bjelkholm.com/#!from-jquery-to-angularjs",
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "name": "Victor Bjelkholm",
+    "email": "victor@bjelkholm.com",
+    "web": "http://victor.bjelkholm.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git://github.com/victorbjelkholm/from-jquery-angularjs.git"
   },
   "engines": {
     "node": "~0.8.0"
@@ -40,7 +35,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/hakimel/reveal.js/blob/master/LICENSE"
+      "url": "https://github.com/victorbjelkholm/from-jquery-angularjs/blob/master/LICENSE"
     }
   ]
 }

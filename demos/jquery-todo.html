@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery.js"></script>
+    <title>jQuery Todo</title>
+</head>
+
+<body style="background-color: #e5ebf5">
+    <!-- <h1>jQuery - Todo sample</h1> -->
+    <div>
+        <input type="text" id="todoName" placeholder="Name of todo" />
+        <button id="addTodo" type="submit">Add</button>
+        <ul id="todoList">
+            <li>
+                <span class="text">Item 1</span>
+                <a href="#" class="todoRemove">Remove</a>
+            </li>
+        </ul>
+    </div>
+    <div id="todoEdit" style="display: none;">
+        <input type="text" id="todoEditField" />
+        <button type="submit">Save</button>
+    </div>
+    <script>
+    $(document).ready(function() {
+
+        var addItem = function(value) {
+            $('#todoList').append('<li><span class="text">' + value + '</span> <a href="#" class="todoRemove">Remove</a></li>')
+        }
+
+        $('#addTodo').on('click', function(ev) {
+            ev.preventDefault();
+            addItem($('#todoName').val());
+        });
+
+        $(document).on('click', '.todoRemove', function(ev) {
+            ev.preventDefault();
+            $(this).parent().remove();
+        });
+
+        $(document).on('click', '#todoList span', function(ev) {
+            ev.preventDefault();
+            var itemText = $(this).text();
+            $(this).parent().remove();
+            $('#todoEdit input').val(itemText);
+            $('#todoEdit').show();
+        });
+
+        $(document).on('click', '#todoEdit button', function(ev) {
+            ev.preventDefault();
+            var itemText = $('#todoEdit input').val();
+            addItem(itemText);
+            $('#todoEdit').hide();
+        })
+    })
+    </script>
+</body>
+
+</html>

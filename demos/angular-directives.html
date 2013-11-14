@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/angular.js"></script>
+</head>
+
+<body ng-app="plnkr" style="background-color: #e5ebf5">
+    <div ng-controller="IndexCtrl">
+        <div style="background-color: lightgrey; padding: 5px">
+          <pre>{{ users | json }}</pre>
+        </div>
+        <div style="float: right;">
+          <user-image user="current_user"></user-image>
+        </div>
+
+        <div style="background-color: #e0f4e5">
+          <user-list users="users"></user-list>
+        </div>
+
+        <div style="float: left;">
+          <user-card user="current_user"></user-card>
+        </div>
+    </div>
+    <script>
+    var app = angular.module('plnkr', []);
+
+    app.controller('IndexCtrl', function($scope) {
+        $scope.users = [{
+            name: 'Victor',
+            twitter: 'victorbjelkholm',
+            image: 'http://i.imgur.com/GWbsujM.jpg'
+        }, {
+            name: 'Mauro',
+            twitter: 'brutuscat',
+            image: 'http://i.imgur.com/fHa6Icq.jpg'
+        }];
+
+        $scope.current_user = angular.copy($scope.users[0]);
+    })
+
+    app.directive('userImage', function () {
+      return {
+        restrict: 'E',
+        scope: {
+          'user': '='
+        },
+        template: '<img height="50" ng-src="{{user.image}}"/>'
+      }
+    })
+
+    app.directive('userCard', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    'user': '='
+                },
+                template: '<div><h3>{{ user.name }}</h3>' +
+                          '<h5>@{{ user.twitter }}</h5>' +
+                          '<user-image user="user"></user-image></div>'
+            }
+        })
+
+    app.directive('userList', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    'users': '='
+                },
+                template: '<div><user-card ng-repeat="user in users" user="user"></user></div>'
+            }
+        })
+    </script>
+</body>
+
+</html>

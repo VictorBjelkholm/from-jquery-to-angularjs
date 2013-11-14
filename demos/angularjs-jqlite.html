@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/angular.js"></script>
+</head>
+
+<body ng-app="plnkr" style="background-color: #e5ebf5">
+    <div ng-controller="IndexCtrl">
+        <change-color color="purple"></change-color>
+        <div ng-repeat="color in colors">
+            <change-color color="{{color}}"></change-color>
+        </div>
+    </div>
+    <script>
+    var app = angular.module('plnkr', []);
+
+    app.controller('IndexCtrl', function($scope) {
+        $scope.colors = ['red', 'blue', 'green', 'yellow'];
+    })
+
+    app.directive('changeColor', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    'color': '@'
+                },
+                template: '<h3>Change my color to {{ color }} by clicking on me!!!</h3>',
+                link: function (scope, element) {
+                    element.bind('click', function () {
+                        element.css('color', scope.color);
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
